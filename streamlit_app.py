@@ -43,20 +43,8 @@ try:
     
 except URLError as e:
   streamlit.error()
-  
-#streamlit.write('The user entered ', fruit_choice)
 
-#import requests
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-
-# write your own comment -what does the next line do? 
-#fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# write your own comment - what does this do?
-#streamlit.dataframe(fruityvice_normalized)
-
-#Dont run anything past this point
-#streamlit.stop()
-
+streamlit.header("The fruit load list contails:")
 #Snowflake related functions
 def get_fruit_load_list():
   with my_cnx.cursor() as my_cur:
@@ -69,11 +57,9 @@ if streamlit.button('Get Fruit Load List'):
   my_data_rows = get_fruit_load_list()
   streamlit.dataframe(my_data_rows)
   
-#import snowflake.connector
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
 fruit_choice = streamlit.text_input('What fruit would you like to add?','Jackfruit')
 streamlit.write('The user entered ', fruit_choice)
 
 #This will not work
-my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+#my_cur.execute("insert into fruit_load_list values ('from streamlit')")
